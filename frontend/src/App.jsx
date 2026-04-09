@@ -26,7 +26,7 @@ function App() {
   const fetchSavedCourses = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:3001/api/courses');
+      const res = await fetch('/api/courses');
       if (!res.ok) throw new Error('Failed to fetch courses (Is MongoDB connected?)');
       const data = await res.json();
       setSavedCourses(Array.isArray(data) ? data : []);
@@ -44,7 +44,7 @@ function App() {
     setCourseData(null);
 
     try {
-      const response = await fetch('http://localhost:3001/api/generate-course', {
+      const response = await fetch('/api/generate-course', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic, skillLevel, duration }),
@@ -69,7 +69,7 @@ function App() {
     setSaveLoading(true);
     setError('');
     try {
-      const response = await fetch('http://localhost:3001/api/save-course', {
+      const response = await fetch('/api/save-course', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(courseData),
